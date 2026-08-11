@@ -1,5 +1,9 @@
 # Scale-MIA 复现与扩展（中文文档）
 
+<p align="center">
+  <a href="README.md">English</a> · <b>简体中文</b>
+</p>
+
 > 本项目是对 NDSS'25 论文 *"Scale-MIA: A Scalable Model Inversion Attack against Secure Federated Learning via Latent Space Reconstruction"*（arXiv: 2311.05808）的**扩展复现**。
 
 - **原论文作者仓库**：[unknown123489/Scale-MIA](https://github.com/unknown123489/Scale-MIA)
