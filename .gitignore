@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# WorkBuddy
+.workbuddy/
+
+# Datasets (auto-downloaded)
+*/train/
+*/test/
+*/dataset/
+*/celeba/
+*/train1/
+
+# Oversized checkpoints (exceed GitHub 100MB limit)
+fedavg-cifar/models/checkpoint_Vggnet.pt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PDFs / translations (large files)
+*.pdf
+2025-644-paper的全文翻译.docx
+
+# Large model files (optional — uncomment if needed)
+# *.pkl
+# *.pt
