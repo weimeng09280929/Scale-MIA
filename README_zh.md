@@ -204,21 +204,3 @@ python targeted-recover-attack.py
 cd dp-cifar
 python dp-recover-attack.py --delta=1e-4 --epsilon=1
 ```
-
-## 七、复现笔记
-
-- **Table IV intra Rate** 比论文略低（−0.05 ~ −0.13），PSNR 基本持平或略高；
-- **HMNIST** 部分 batch 偏差较大，源于医学图像与自然图像的域差距；
-- **ImageNette** 重建率低于 CIFAR，符合论文"分辨率越高攻击越难"的观察；
-- **CelebA** 人脸重建率较高（0.91→0.55），验证了 Scale-MIA 对人脸数据的有效性；
-- **Table VIII** 复现难点是自编码器泛化——直接用全量预训练 AE 会让 decoder 对蝴蝶和牛蛙重建同样好，本仓库通过"仅帝王蝶微调"制造 inter/intra 差距。
-
-## 八、与论文结果对比汇总
-
-`FedAVG实验数据汇总.xlsx` 中 `Table IV 汇总` sheet 将 6 个数据集并排展示：
-
-| System | Dataset | Batch | 复现 Rate | 论文 Rate | ΔRate | 复现 PSNR | 论文 PSNR | ΔPSNR |
-|---|---|---|---|---|---|---|---|---|
-
-- 绿色底 = 优于论文，橙色底 = 低于论文
-- Table V–IX 的论文参考数据保持原样
