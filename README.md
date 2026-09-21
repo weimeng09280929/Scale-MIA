@@ -87,12 +87,6 @@ python attack-skew.py --skew inter --batch_size 16
 | **Table VIII** | Data skew (intra/inter class on TinyImageNet) | `fedavg-tinyimagenet/` — `attack-skew.py` (this repo: fully reproduced) |
 | **Table IX** | Differential privacy defense | `dp-cifar/` — `dp-recover-attack.py` |
 
-### Combined Excel (`FedAVG实验数据汇总.xlsx`)
-
-Contains all tables from the paper in one file:
-- **Table IV 汇总** sheet: All 6 datasets side by side, with 复现 Rate/PSNR, 论文 Rate/PSNR, and Δ deltas (green = better than paper, orange = worse)
-- Table V–IX sheets: Paper reference data preserved as-is
-
 ---
 
 ## Abstract
