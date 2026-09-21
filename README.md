@@ -75,19 +75,6 @@ python attack-skew.py --skew inter --batch_size 16
 # Repeat for batch sizes 32, 64, 128, 256
 ```
 
-**Reproduced Results (Table VIII):**
-
-| Batch | Intra Rate | Intra PSNR | Inter Rate | Inter PSNR |
-|-------|-----------|------------|------------|------------|
-| 16 | 0.9395 | 23.5367 | 0.9435 | 22.8295 |
-| 32 | 0.8938 | 23.4400 | 0.9250 | 22.8096 |
-| 64 | 0.8638 | 23.4740 | 0.8750 | 22.4771 |
-| 128 | 0.7214 | 23.6927 | 0.8411 | 22.1383 |
-| 256 | 0.7227 | 23.6377 | 0.7422 | 22.2338 |
-
-> Inter PSNR is consistently 0.6–1.5 dB lower than intra, confirming the decoder specializes in butterflies after fine-tuning. Inter Rate remains higher than the paper because the encoder retains pre-trained feature extraction on bullfrog.
-
----
 
 ## Paper Table Mapping
 
@@ -242,20 +229,3 @@ python targeted-recover-attack.py
 cd dp-cifar
 python dp-recover-attack.py --delta=1e-4 --epsilon=1
 ```
-
----
-
-## Reproduction Notes
-
-### Table IV — Key Differences from Paper
-
-- **Intra Rate**: Slightly lower than paper (−0.05 to −0.13 across datasets), PSNR generally comparable or slightly higher.
-- **Inter-class**: HMNIST shows larger deviation at some batch sizes due to the medical image domain gap.
-- **ImageNette**: Added as a more challenging mid-resolution benchmark; reconstruction rates are lower (CIFAR < ImageNette < TinyImageNet scale), consistent with the paper's observation that higher resolution hurts attack performance.
-- **CelebA**: Face reconstruction rates are relatively high (0.91→0.55 across batch sizes), demonstrating Scale-MIA's effectiveness on face datasets.
-
-### Table VIII — Data Skew Reproduction Notes
-
-The key challenge in reproducing Table VIII is the autoencoder's generalization. Using a fully pre-trained autoencoder (trained on all 200 TinyImageNet classes) causes the decoder to reconstruct both butterflies and bullfrogs equally well, failing to show the inter-class degradation.
-
-Our approach: fine-tune the pre-trained autoencoder on **only** monarch butterfly data (2000 epochs with augmentation), allowing the decoder to specialize in butterflies and partially forget non-butterfly classes. This produces the expected inter < intra PSNR gap (0.6–1.5 dB), though the inter Rate remains higher than the paper due to the encoder's retained general-purpose feature extraction.
